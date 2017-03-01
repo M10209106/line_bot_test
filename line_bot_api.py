@@ -12,16 +12,16 @@ line_bot_controller = line_bot_controller.LineController(line_token)
 def index():
     return "<p>Hello World!</p>"
 
-# @app.route('/callback', methods=['POST'])
-# def callback():
-#     data_in = request.get_json(force=True)
-#     print data_in
-#     article = {}
-#     article['title'] = data_in['title']
-#     article['content'] = data_in['content']
+@app.route('/callback', methods=['POST'])
+def callback():
+    data_in = request.get_json(force=True)
+    print data_in
+    article = {}
+    article['title'] = data_in['title']
+    article['content'] = data_in['content']
 
-#     data = line_bot_controller.sendText(article)
-#     return data
+    data = line_bot_controller.sendText(article)
+    return data
 
 if __name__ == '__main__':
     app.run()

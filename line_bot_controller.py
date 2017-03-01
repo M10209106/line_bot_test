@@ -1,9 +1,7 @@
 #-*- coding: UTF-8 -*-
-
 from flask import request
 from linebot import LineBotApi
 from linebot.models import TextSendMessage
-
 import json
 
 class LineController:

@@ -8,7 +8,7 @@ app = Flask(__name__)
 line_token = os.environ.get('Line_Token', None)
 line_bot_controller = line_bot_controller.LineController(line_token)
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
     return "<p>Hello World!</p>"
 
@@ -24,4 +24,4 @@ def callback():
     return data
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

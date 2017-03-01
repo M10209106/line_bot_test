@@ -1,1 +1,1 @@
-web: python line_bot_api.py
+web: gunicorn line_bot_api:app

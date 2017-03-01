@@ -1,13 +1,15 @@
 #-*- coding: UTF-8 -*-
 
 from flask import Flask, request
+import os
 import sys
 import json
 import requests
 import line_bot_controller
 
 app = Flask(__name__)
-line_bot_controller = line_bot_controller.LineController(sys.argv[1])
+line_token = os.environ.get('Line_Token', None)
+line_bot_controller = line_bot_controller.LineController(line_token)
 
 @app.route('/')
 def index():

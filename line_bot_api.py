@@ -2,11 +2,11 @@
 
 from flask import Flask, request
 import os
-# import line_bot_controller
+import line_bot_controller
 
 app = Flask(__name__)
 line_token = os.environ.get('Line_Token', None)
-# line_bot_controller = line_bot_controller.LineController(line_token)
+line_bot_controller = line_bot_controller.LineController(line_token)
 
 @app.route('/', methods=['GET'])
 def index():

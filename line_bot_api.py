@@ -2,9 +2,6 @@
 
 from flask import Flask, request
 import os
-import sys
-import json
-import requests
 import line_bot_controller
 
 app = Flask(__name__)

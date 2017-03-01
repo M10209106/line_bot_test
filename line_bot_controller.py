@@ -1,9 +1,8 @@
 #-*- coding: UTF-8 -*-
 
 from flask import request
-from linebot import LineBotApi, WebhookHandler
-from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from linebot import LineBotApi
+from linebot.models import TextSendMessage
 
 import json
 

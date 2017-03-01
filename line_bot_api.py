@@ -1,0 +1,29 @@
+#-*- coding: UTF-8 -*-
+
+from flask import Flask, request
+import sys
+import json
+import requests
+import line_bot_controller
+
+app = Flask(__name__)
+line_bot_controller = line_bot_controller.LineController(sys.argv[1])
+
+@app.route('/')
+def index():
+    return "<p>Hello World!</p>"
+
+@app.route('/callback', methods=['POST'])
+def callback():
+    data_in = request.get_json(force=True)
+    print data_in
+    article = {}
+    article['title'] = data_in['title']
+    article['content'] = data_in['content']
+
+    data = line_bot_controller.sendText(article)
+    return data
+
+if __name__ == '__main__':
+    print 
+    app.run(host='0.0.0.0', port=5566, debug=True)

@@ -27,6 +27,6 @@ class LineController:
         return 'OK'    
 
     def replyText(self, event):
-        content = "{}\n{}".format(str(event.source), event.message.text)
+        content = "{}\n{}".format(type(event.source), event.message.text)
         self.line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(content)))
         return 'OK'

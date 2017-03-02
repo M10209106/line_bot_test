@@ -18,6 +18,7 @@ from linebot.models import *
 app = Flask(__name__)
 line_token = os.environ.get('Line_Token', None)
 channel_secret = os.environ.get('Channel_Secret', None)
+signature_test = ''
 
 line_bot_api = LineBotApi(line_token)
 handler = WebhookHandler(channel_secret)
@@ -30,6 +31,7 @@ def index():
 @app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
+    signature_test = signature
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
     try:
@@ -42,7 +44,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    content = event.message.text
+    content = signature_test
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=content))
     return 0
 

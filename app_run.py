@@ -84,6 +84,10 @@ picture = ["https://i.imgur.com/qKkE2bj.jpg",
            "https://i.imgur.com/2cdURNa.jpg"
            ]
 
+@app.route('/', methods=['GET'])
+def index():
+    return "<p>Hello World!</p>"
+    
 
 @app.route("/callback", methods=['POST'])
 def callback():

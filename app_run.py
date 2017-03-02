@@ -1,5 +1,7 @@
+#-*- coding: UTF-8 -*-
 import requests
 import re
+import os
 import random
 from bs4 import BeautifulSoup
 from collections import defaultdict

@@ -32,10 +32,11 @@ class LineController:
         send_notify = self.notification(article['title'], article['content'])
         return 'OK'    
 
-    @handler.add(MessageEvent, message=TextMessage)
-    def handle_message(event):
-        print("event.reply_token:", event.reply_token)
-        print("event.message.text:", event.message.text)
-        content = '[REPLY]' + event.message.text
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
-        return 0
+    def getMessage(self, article):
+        @self.handler.add(MessageEvent, message=TextMessage)
+        def handle_message(self, event):
+            print("event.reply_token:", event.reply_token)
+            print("event.message.text:", event.message.text)
+            content = '[REPLY]' + event.message.text
+            self.line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+            return 0

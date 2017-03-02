@@ -6,7 +6,7 @@ import json
 
 
 class LineController:
-    def __init__(self, token, channel_secret):
+    def __init__(self, token):
         self.line_bot_api = LineBotApi(token)
         pass
 

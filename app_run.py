@@ -45,6 +45,7 @@ def handle_message(event):
     content = {}
     content['reply_token'] = event.reply_token
     content['text'] = event.message.text
+    content['user_id'] = event.source.userId
 
 
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(content)))

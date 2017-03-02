@@ -1,19 +1,13 @@
 #-*- coding: UTF-8 -*-
 from flask import request, abort
+from linebot import LineBotApi
+from linebot.models import *
 import json
 
-from linebot import (
-    LineBotApi, WebhookHandler
-)
-from linebot.exceptions import (
-    InvalidSignatureError
-)
-from linebot.models import *
 
 class LineController:
     def __init__(self, token, channel_secret):
         self.line_bot_api = LineBotApi(token)
-        self.handler = WebhookHandler(channel_secret)
         pass
 
     def notification(self, title, content):
@@ -32,11 +26,7 @@ class LineController:
         send_notify = self.notification(article['title'], article['content'])
         return 'OK'    
 
-    def getMessage(self):
-        @self.handler.add(MessageEvent, message=TextMessage)
-        def handle_message(self, event):
-            print("event.reply_token:", event.reply_token)
-            print("event.message.text:", event.message.text)
-            content = '[REPLY]' + event.message.text
-            self.line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
-            return 0
+    def replyText(self, event):
+        content = "{}\n{}".format(str(event.source), event.message.text)
+        self.line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(content)))
+        return 'OK'

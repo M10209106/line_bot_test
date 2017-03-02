@@ -12,11 +12,11 @@ class LineController:
 
     def notification(self, title, content):
         # print title, content
-        # with open('data/notify_list.json', 'r') as file:
-        #     notify_list = json.load(file)
-        # if len(notify_list) == 0:
-        #     return False
-        notify_list = ["Ue43669a8557190c6d91cf84c44a5902b"]
+        with open('data/notify_list.json', 'r') as file:
+            notify_list = json.load(file)
+        if len(notify_list) == 0:
+            return False
+        # notify_list = ["Ue43669a8557190c6d91cf84c44a5902b"]
         
         content = "{}\n{}".format(title, content)
         self.line_bot_api.multicast(notify_list, TextSendMessage(text=content))

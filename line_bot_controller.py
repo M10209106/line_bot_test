@@ -1,5 +1,5 @@
 #-*- coding: UTF-8 -*-
-from flask import request
+from flask import request, abort
 import json
 
 from linebot import (
@@ -32,7 +32,7 @@ class LineController:
         send_notify = self.notification(article['title'], article['content'])
         return 'OK'    
 
-    def getMessage(self, article):
+    def getMessage(self):
         @self.handler.add(MessageEvent, message=TextMessage)
         def handle_message(self, event):
             print("event.reply_token:", event.reply_token)

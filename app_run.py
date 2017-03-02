@@ -42,10 +42,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    content = json.dumps(event, ensure_ascii=False)
+    content = event.message.text
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=content))
     return 0
 
 
 if __name__ == '__main__':
     app.run()
+    # app.run(host='0.0.0.0', port=5566, debug=True)
